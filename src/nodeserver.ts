@@ -11,6 +11,7 @@ import TcpConnection from "./transports/tcpconnection";
 import WSConnection from "./transports/wsconnection";
 
 import * as pubsub from "./pubsub";
+import * as storage from "./storage";
 import { KeyValues } from "./types";
 
 import { Logger } from "./logger";
@@ -124,6 +125,7 @@ export class MServer {
 		this.setPermissions(normalizedConfig);
 		this.instantiateNodes(normalizedConfig);
 		this.setupBindings(normalizedConfig);
+		this.setStorage(normalizedConfig);
 	}
 
 	public init(): Promise<void> {
@@ -196,6 +198,14 @@ export class MServer {
 			}
 			from.bind(to, binding.pattern);
 		});
+	}
+
+	private setStorage({ storage: storageRoot }: NormalizedConfig) {
+		if (typeof storageRoot !== "string") {
+			throw new Error(`Invalid storage root, string expected`);
+		}
+		const simpleStorage = new storage.ThrottledStorage(new storage.SimpleFileStorage<any>(storageRoot));
+		this.hub.setStorage(simpleStorage);
 	}
 
 	// Initialize and start server
