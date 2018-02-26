@@ -1,7 +1,7 @@
 import Message from "../message";
 import * as pubsub from "../pubsub";
 
-export interface TestSourceOptions extends pubsub.BaseSource {
+export interface TestSourceOptions extends pubsub.BaseSourceOptions {
 	topic?: string; // Topic to use for test messages (default "blib")
 	interval?: number; // Interval for sending test messages (in ms, default 5000ms)
 }

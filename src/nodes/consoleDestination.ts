@@ -8,7 +8,7 @@ export interface ConsoleDestinationOptions {
 export class ConsoleDestination implements pubsub.Destination {
 	public name: string;
 
-	constructor(name: string, options?: ConsoleDestinationOptions) {
+	constructor(name: string, _options?: ConsoleDestinationOptions) {
 		this.name = name;
 	}
 

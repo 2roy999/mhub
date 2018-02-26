@@ -22,9 +22,9 @@ class TestServer {
 	public connectionCount: number = 0;
 
 	private _port: number;
-	private _hub: Hub;
-	private _server: http.Server;
-	private _wss: ws.Server;
+	private _hub!: Hub;
+	private _server!: http.Server;
+	private _wss!: ws.Server;
 	private _connectionId: number = 0;
 	private _connections: { [id: string]: ws; } = {};
 

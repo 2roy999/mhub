@@ -7,7 +7,7 @@ import { getDefaultStorage, Storage } from "../storage";
 
 import log from "../log";
 
-export interface QueueOptions extends pubsub.BaseSource {
+export interface QueueOptions extends pubsub.BaseSourceOptions {
 	capacity?: number; // Maximum queue size (in number of messages)
 	pattern?: string | string[]; // Topic patterns to memorize, defaults to all messages
 	persistent?: boolean; // If true, queue will be persisted to storage (typically disk)
